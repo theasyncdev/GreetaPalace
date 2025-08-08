@@ -23,7 +23,7 @@ Greta Palace is a comprehensive hotel management system built with Node.js, Expr
 - **Room booking system** with date validation
 - **Real-time room availability** tracking
 - **Admin dashboard** for hotel management
-- **User profile management** with image upload
+- **User profile management** 
 - **Responsive modern UI** with animations
 - **Booking status management** (Booked, Checked-In, Completed, Cancelled)
 
@@ -34,7 +34,7 @@ Greta Palace is a comprehensive hotel management system built with Node.js, Expr
 - 🏠 **Room Browsing** with detailed descriptions and images
 - 📅 **Date-based Booking** with availability checking
 - 💳 **Booking Management** with status tracking
-- 👤 **Profile Management** with image upload
+- 👤 **Profile Management**
 - 📱 **Responsive Design** for all devices
 
 ### For Administrators
@@ -43,7 +43,7 @@ Greta Palace is a comprehensive hotel management system built with Node.js, Expr
 - 👥 **User Management** with search functionality
 - 📊 **Booking Management** with status updates
 - 📈 **Analytics & Reports** (coming soon)
-- 🔧 **System Configuration** and settings
+
 
 ## 🛠️ Technology Stack
 
@@ -61,7 +61,6 @@ Greta Palace is a comprehensive hotel management system built with Node.js, Expr
 - **EJS** - Template engine
 - **CSS3** - Styling with modern features
 - **JavaScript (ES6+)** - Client-side functionality
-- **GSAP** - Advanced animations
 - **Font Awesome** - Icons
 - **Google Fonts** - Typography
 
@@ -74,8 +73,6 @@ Greta Palace is a comprehensive hotel management system built with Node.js, Expr
 
 ```
 greeta_palace/
-├── apis/                    # API endpoints
-│   └── apis.js             # REST API routes
 ├── controllers/             # Business logic
 │   ├── admin.js            # Admin operations
 │   ├── booking.js          # Booking operations
@@ -106,7 +103,6 @@ greeta_palace/
 ├── app.js                  # Main application file
 ├── conn.js                 # Database connection
 ├── package.json            # Dependencies
-└── .env                    # Environment variables
 ```
 
 ## 🚀 Installation
@@ -174,68 +170,6 @@ ADMIN_key=your_admin_jwt_secret_here
 SESSION_SECRET=your_session_secret_here
 ```
 
-## 📚 API Documentation
-
-### Authentication Endpoints
-
-#### User Authentication
-```http
-POST /user/login
-POST /user/register
-GET /user/logout
-```
-
-#### Admin Authentication
-```http
-POST /admin/login
-POST /admin/register
-GET /admin/logout
-```
-
-### Room Management API
-
-#### Get All Rooms
-```http
-GET /api/getrooms?page=1&limit=4
-```
-
-#### Room Operations (Admin)
-```http
-POST /admin/rooms                    # Add new room
-GET /admin/updaterooms/:id          # Update room form
-POST /admin/updaterooms/:id         # Update room
-GET /admin/deleteroom/:id           # Delete room
-```
-
-### Booking API
-
-#### User Booking
-```http
-GET /user/bookroom/:id              # Booking form
-POST /user/bookroom/:id             # Create booking
-GET /user/bookings                  # User's bookings
-POST /user/booking/cancel/:id       # Cancel booking
-```
-
-#### Admin Booking Management
-```http
-GET /admin/bookings                 # All bookings
-POST /admin/booking/updatebooking/:id  # Update booking status
-```
-
-### User Management API
-
-#### User Operations
-```http
-GET /user/profile                   # User profile
-POST /user/updateprofile            # Update profile
-```
-
-#### Admin User Management
-```http
-GET /admin/users                    # All users
-GET /admin/userinfo/:id             # User details
-```
 
 ## 🗄️ Database Schema
 
@@ -302,7 +236,6 @@ GET /admin/userinfo/:id             # User details
 - **Access**: Admin dashboard and management tools
 - **Authentication**: Admin login required
 - **Permissions**:
-  - Full system access
   - Room management (CRUD)
   - User management
   - Booking management
@@ -312,7 +245,6 @@ GET /admin/userinfo/:id             # User details
 
 - **Password Hashing**: SHA-256 with salt
 - **JWT Authentication**: Secure token-based auth
-- **Session Management**: Express sessions
 - **Input Validation**: Server-side validation
 - **File Upload Security**: Multer with validation
 - **CSRF Protection**: Built-in Express protection
@@ -334,57 +266,6 @@ GET /admin/userinfo/:id             # User details
 - **Pagination**: Efficient data loading
 - **Search Functionality**: Quick data access
 
-## 🚀 Deployment
-
-### Local Development
-```bash
-npm run dev
-```
-
-### Production Deployment
-
-1. **Environment Setup**
-   ```bash
-   NODE_ENV=production
-   PORT=3000
-   ```
-
-2. **Database Setup**
-   - Configure MongoDB connection
-   - Set up indexes for performance
-
-3. **File Uploads**
-   - Configure static file serving
-   - Set up cloud storage (optional)
-
-4. **Security**
-   - Enable HTTPS
-   - Configure CORS
-   - Set up rate limiting
-
-### Deployment Platforms
-- **Heroku**: Easy deployment with Git
-- **Vercel**: Serverless deployment
-- **AWS**: Scalable cloud deployment
-- **DigitalOcean**: VPS deployment
-
-## 🧪 Testing
-
-### Manual Testing Checklist
-- [ ] User registration and login
-- [ ] Room booking functionality
-- [ ] Admin dashboard access
-- [ ] Room management operations
-- [ ] Booking status updates
-- [ ] File upload functionality
-- [ ] Responsive design testing
-- [ ] Cross-browser compatibility
-
-### Automated Testing (Future)
-- Unit tests with Jest
-- Integration tests
-- E2E tests with Cypress
-- API testing with Supertest
 
 ## 🔧 Configuration
 
@@ -417,22 +298,6 @@ const upload = multer({
 });
 ```
 
-## 📈 Performance Optimization
-
-### Current Optimizations
-- **Database Indexing**: Optimized queries
-- **Pagination**: Efficient data loading
-- **Image Optimization**: Compressed uploads
-- **Caching**: Session-based caching
-- **CDN Ready**: Static asset optimization
-
-### Future Optimizations
-- **Redis Caching**: Session and data caching
-- **Database Optimization**: Query optimization
-- **Image CDN**: Cloud image hosting
-- **Compression**: Gzip compression
-- **Load Balancing**: Multiple server instances
-
 ## 🤝 Contributing
 
 ### Development Workflow
@@ -442,38 +307,9 @@ const upload = multer({
 4. Test thoroughly
 5. Submit a pull request
 
-### Code Standards
-- **ESLint**: Code linting
-- **Prettier**: Code formatting
-- **Conventional Commits**: Commit message format
-- **Documentation**: Inline code comments
-
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 📞 Support
 
-For support and questions:
-- **Email**: support@gretapalace.com
-- **Documentation**: [Wiki Link]
-- **Issues**: GitHub Issues
-
-## 🔄 Version History
-
-### v1.0.0 (Current)
-- Initial release
-- Complete hotel management system
-- User and admin functionality
-- Modern responsive UI
-- Booking system with validation
-
-### Future Versions
-- **v1.1.0**: Advanced analytics
-- **v1.2.0**: Mobile app integration
-- **v1.3.0**: Payment gateway integration
-- **v2.0.0**: Multi-hotel support
-
----
-
-**Built with ❤️ for Greta Palace Hotel Management** 
+**Built with ❤️ for Greta Palace Hotel Management System** 
