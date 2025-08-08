@@ -11,8 +11,7 @@
 - [Database Schema](#database-schema)
 - [User Roles & Permissions](#user-roles--permissions)
 - [File Structure](#file-structure)
-- [Deployment](#deployment)
-- [Contributing](#contributing)
+
 
 ## 🏨 Overview
 
