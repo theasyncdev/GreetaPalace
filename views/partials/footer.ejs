@@ -1,0 +1,166 @@
+    <footer class="modern-footer">
+      <!-- Main Footer Content -->
+      <div class="footer-main">
+        <div class="footer-container">
+          
+          <!-- Brand Section -->
+          <div class="footer-brand">
+            <div class="brand-logo">
+              <h2>Greta Palace</h2>
+              <p class="brand-tagline">Luxury Redefined</p>
+            </div>
+            <p class="brand-description">
+              A Palladian manor in the heart of Kathmandu, Greta Palace offers an unparalleled luxury experience with world-class amenities, exquisite dining, and breathtaking views of the Himalayas.
+            </p>
+            <div class="social-links">
+              <a href="#" class="social-link" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="social-link" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#" class="social-link" aria-label="Twitter">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="social-link" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a href="#" class="social-link" aria-label="YouTube">
+                <i class="fab fa-youtube"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul class="footer-links">
+              <li><a href="/">Home</a></li>
+              <li><a href="/about">About Us</a></li>
+              <li><a href="/room">Rooms & Suites</a></li>
+              <li><a href="/user/bookings">My Bookings</a></li>
+              <li><a href="/user/login">Login</a></li>
+              <li><a href="/user/register">Register</a></li>
+            </ul>
+          </div>
+
+          <!-- Services -->
+          <div class="footer-section">
+            <h3>Our Services</h3>
+            <ul class="footer-links">
+              <li><a href="#spa">Spa & Wellness</a></li>
+              <li><a href="#dining">Fine Dining</a></li>
+              <li><a href="#bar">Greta Bar</a></li>
+              <li><a href="#fitness">Fitness Center</a></li>
+              <li><a href="#events">Events & Weddings</a></li>
+              <li><a href="#concierge">Concierge Services</a></li>
+            </ul>
+          </div>
+
+          <!-- Contact Information -->
+          <div class="footer-section">
+            <h3>Contact Info</h3>
+            <div class="contact-info">
+              <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                  <h4>Address</h4>
+                  <p>Thamel, Kathmandu<br>Nepal</p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <i class="fas fa-phone-alt"></i>
+                <div>
+                  <h4>Phone</h4>
+                  <p>+977-1-4444444<br>+977-1-5555555</p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <div>
+                  <h4>Email</h4>
+                  <p>info@gretapalace.com<br>reservations@gretapalace.com</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Newsletter Subscription -->
+          <div class="footer-section newsletter-section">
+            <h3>Stay Updated</h3>
+            <p>Subscribe to our newsletter for exclusive offers and updates.</p>
+            <form class="newsletter-form" id="newsletterForm">
+              <div class="input-group">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">
+                  <i class="fas fa-paper-plane"></i>
+                </button>
+              </div>
+            </form>
+            <div class="newsletter-success" id="newsletterSuccess" style="display: none;">
+              <i class="fas fa-check-circle"></i>
+              <span>Thank you for subscribing!</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <div class="footer-bottom-container">
+          <div class="footer-bottom-left">
+            <p>&copy; 2024 Greta Palace. All rights reserved.</p>
+          </div>
+          <div class="footer-bottom-right">
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/terms">Terms of Service</a>
+            <a href="/cookies">Cookie Policy</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Back to Top Button -->
+      <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+      </button>
+    </footer>
+
+    <!-- Newsletter Form Handler -->
+    <script>
+      document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = this.querySelector('input[type="email"]').value;
+        
+        // Simulate newsletter subscription
+        this.style.display = 'none';
+        document.getElementById('newsletterSuccess').style.display = 'flex';
+        
+        // Reset form after 3 seconds
+        setTimeout(() => {
+          this.style.display = 'block';
+          document.getElementById('newsletterSuccess').style.display = 'none';
+          this.reset();
+        }, 3000);
+      });
+
+      // Back to top functionality
+      const backToTopBtn = document.getElementById('backToTop');
+      
+      window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+          backToTopBtn.classList.add('show');
+        } else {
+          backToTopBtn.classList.remove('show');
+        }
+      });
+
+      backToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    </script>
+</body>
+</html>

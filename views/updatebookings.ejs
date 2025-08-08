@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/updatebooking.css">
+</head>
+<body>
+    
+    <div class="row">
+        <div class="col-md-12">
+          <form action="/admin/booking/updatebooking/<%=bookings._id%>" method="post">
+            <h1> Booking Details </h1>
+            
+            <fieldset>
+              
+              <legend>Booking Info</legend>
+            
+              <label for="name">Booked By:</label>
+              <input type="text" id="name" name="user_name" value="<%=bookings.BookedBy.name%>" disabled>
+            
+              <label for="email">Email:</label>
+              <input type="email" id="mail" name="user_email" value="<%=bookings.BookedBy.email%>" disabled>
+           
+              <label for="phone">phone:</label>
+              <input type="phone" id="phone" name="phone" value="<%=bookings.BookedBy.phone%>" disabled>
+
+              <label for="room">Boooked Room:</label>
+              <input type="text" id="room" name="room" value="<%=bookings.bookedRoom.roomName%>" disabled>
+            
+              <label>Status:</label>
+              <select name="status" id="status">
+                <option>completed</option>
+                <option>cancelled</option>
+                <option>checked-In</option>
+            </select>
+            <h2>Booking-Id: <span class="span"><%=bookings._id%></span></h2>
+              <h2>Check-In-Date: <span class="span date"><%=bookings.checkInDate%></span></h2>
+              <h2>Check-Out-Date: <span class="span date"><%=bookings.checkOutDate%></span></h2>
+              <h2>Nights: <span class="span"><%=bookings.Nights%></span></h2>
+              <h2>Totall cost: <span class="span">RS.<%=bookings.totallCost%></span></h2>
+            </fieldset>
+            <button type="submit">Update Booking</button>
+            
+           </form>
+            </div>
+          </div>
+          
+
+          <script>
+           function formatDate(dateString) {
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                return new Date(dateString).toLocaleDateString(undefined, options);
+            }
+
+            document.querySelectorAll(".date").forEach(element => {
+                element.textContent = formatDate(element.textContent);
+            })
+          </script>
+    
+    
+</body>
+</html>

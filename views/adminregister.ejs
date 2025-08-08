@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Registration</title>
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+<div class="form-container">
+	<p class="title">Admin Creation Form</p>
+    <% if (locals.error) { %>
+        <div class="error-message">
+            <span><%= error %></span>
+        </div>
+    <% } %>
+   
+	<form class="form" method="post" action="/admin/register">
+        <div class="input-group">
+			<label for="fname">Full Name</label>
+			<input type="text" name="name" id="fname" placeholder="Enter full name" required>
+		</div>
+		<div class="input-group">
+			<label for="email">Email</label>
+			<input type="email" name="email" id="email" placeholder="Enter email address" required>
+		</div>
+        <div class="input-group">
+			<label for="username">Username</label>
+			<input type="text" name="username" id="username" placeholder="Enter username" required>
+		</div>
+		<div class="input-group">
+			<label for="password">Password</label>
+			<input type="password" name="password" id="password" placeholder="Enter password" required>
+		</div>
+		<button class="sign">Create Admin</button>
+	</form>
+	<div class="social-message">
+		<div class="line"></div>
+		<p class="message">Already have an account? <a href="/admin/login">Login</a></p>
+		<div class="line"></div>
+	</div>
+</div>
+</body>
+</html>

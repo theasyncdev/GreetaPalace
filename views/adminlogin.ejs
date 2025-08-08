@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+<div class="form-container">
+	<p class="title">Admin Login</p>
+	<% if (locals.error) { %>
+		<div class="error-message">
+			<span><%= error %></span>
+		</div>
+	<% } %>
+	<form class="form" method="post" action="/admin/login">
+		<div class="input-group">
+			<label for="username">Username</label>
+			<input type="text" name="username" id="username" placeholder="Enter username" required>
+		</div>
+		<div class="input-group">
+			<label for="password">Password</label>
+			<input type="password" name="password" id="password" placeholder="Enter password" required>
+			<div class="forgot">
+				<a rel="noopener noreferrer" href="#">Forgot Password ?</a>
+			</div>
+		</div>
+		<button class="sign">Sign in</button>
+	</form>
+	<div class="social-message">
+		<div class="line"></div>
+		<p class="message">Don't have an account? <a href="/admin/register">Register</a></p>
+		<div class="line"></div>
+	</div>
+</div>
+</body>
+</html>

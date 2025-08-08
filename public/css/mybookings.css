@@ -1,0 +1,473 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+}
+
+.maincontainer {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* Modern Booking Section */
+.bookingcontainer {
+    width: 100%;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.bookingcontainer > h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#separation {
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    margin: 20px auto 40px;
+    border: none;
+    border-radius: 2px;
+}
+
+/* No Bookings State */
+.no-bookings {
+    text-align: center;
+    padding: 60px 20px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    margin: 20px;
+}
+
+.no-bookings i {
+    font-size: 4rem;
+    color: #6c757d;
+    margin-bottom: 20px;
+}
+
+.no-bookings h1 {
+    color: #333;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.no-bookings p {
+    color: #6c757d;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.browse-rooms-btn {
+    display: inline-block;
+    padding: 15px 30px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.browse-rooms-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    color: white;
+    text-decoration: none;
+}
+
+/* Modern Card Container */
+.cardcontainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+    padding: 20px 0;
+}
+
+/* Enhanced Booking Cards */
+.card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.card-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 25px;
+    color: white;
+    position: relative;
+}
+
+.card-header h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+}
+
+.card-content {
+    padding: 25px;
+}
+
+.booking-info {
+    margin-bottom: 25px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
+
+.info-item i {
+    width: 20px;
+    margin-right: 15px;
+    color: #667eea;
+    font-size: 1.1rem;
+}
+
+.info-item span {
+    font-size: 0.95rem;
+    color: #555;
+    font-weight: 500;
+}
+
+.info-item strong {
+    color: #333;
+    font-weight: 600;
+}
+
+.card-actions {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.cancelbook {
+    display: inline-block;
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+}
+
+.cancelbook:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
+    color: white;
+    text-decoration: none;
+}
+
+.cancelbook i {
+    margin-right: 8px;
+}
+
+/* Status Colors */
+.status-cancelled {
+    color: #dc3545 !important;
+    background: rgba(220, 53, 69, 0.1) !important;
+}
+
+.status-booked {
+    color: #28a745 !important;
+    background: rgba(40, 167, 69, 0.1) !important;
+}
+
+.status-completed {
+    color: #17a2b8 !important;
+    background: rgba(23, 162, 184, 0.1) !important;
+}
+
+.status-checked-in {
+    color: #ffc107 !important;
+    background: rgba(255, 193, 7, 0.1) !important;
+}
+
+/* Disabled States */
+.disabled-button {
+    background: #6c757d !important;
+    color: white !important;
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+    box-shadow: none !important;
+}
+
+.disabled-button:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.completed-btn {
+    background: #28a745 !important;
+    color: white !important;
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+    box-shadow: none !important;
+}
+
+.completed-btn:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Enhanced Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.pagination-link {
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pagination-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    color: white;
+    text-decoration: none;
+}
+
+.pagination span {
+    margin: 0 10px;
+    font-weight: 500;
+    color: #333;
+    font-size: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .cardcontainer {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+    }
+    
+    .bookingcontainer > h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .bookingcontainer {
+        padding: 30px 15px;
+    }
+    
+    .bookingcontainer > h2 {
+        font-size: 1.8rem;
+    }
+    
+    .cardcontainer {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .card-header {
+        padding: 20px;
+    }
+    
+    .card-header h2 {
+        font-size: 1.2rem;
+    }
+    
+    .card-content {
+        padding: 20px;
+    }
+    
+    .info-item {
+        margin-bottom: 12px;
+    }
+    
+    .info-item i {
+        font-size: 1rem;
+    }
+    
+    .info-item span {
+        font-size: 0.9rem;
+    }
+    
+    .pagination {
+        padding: 30px 0;
+        gap: 10px;
+    }
+    
+    .pagination-link {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .bookingcontainer {
+        padding: 20px 10px;
+    }
+    
+    .bookingcontainer > h2 {
+        font-size: 1.5rem;
+    }
+    
+    .card-header {
+        padding: 15px;
+    }
+    
+    .card-header h2 {
+        font-size: 1.1rem;
+    }
+    
+    .status-badge {
+        position: static;
+        display: inline-block;
+        margin-top: 10px;
+        font-size: 0.7rem;
+    }
+    
+    .card-content {
+        padding: 15px;
+    }
+    
+    .info-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .info-item i {
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+    
+    .cancelbook {
+        padding: 10px 20px;
+        font-size: 0.8rem;
+    }
+    
+    .pagination {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .pagination-link {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Animation for cards */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+.card:nth-child(4) { animation-delay: 0.4s; }
+.card:nth-child(5) { animation-delay: 0.5s; }
+.card:nth-child(6) { animation-delay: 0.6s; }
+
+/* Loading state for cards */
+.card.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Focus states for accessibility */
+.card:focus-within {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
+
+.cancelbook:focus {
+    outline: 2px solid #dc3545;
+    outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+    .card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+    
+    .cancelbook {
+        display: none;
+    }
+    
+    .pagination {
+        display: none;
+    }
+}

@@ -1,0 +1,34 @@
+<header>
+    <div class="logo">Greeta.</div>
+    <div class="hamburger">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+    <nav class="nav-bar">
+        <ul>
+            <li><a href="/" class="active">HOME</a></li>
+            <li><a href="/about">ABOUT</a></li>
+            <li><a href="/room">ROOMS</a></li>
+            <% if (locals.user) { %>
+                <li><a href="/user/bookings">MY PROFILE</a></li>
+                <li><a href="/user/logout" id="li-logout">LOGOUT</a></li>
+               <% } %>
+            <% if (!locals.user) { %>
+                    <li><a href="/user/login" id="login-btn">LOG IN</a></li>
+                    <li><a href="/user/register" id="signup-btn">SIGN UP</a></li>
+                <% } else {%>
+                <div class="user">
+                    <%if (user.userImg) { %>
+                        <img src ="/uploads/<%=user.userImg%>">
+                    <%} else {%>
+                        <img src ="/images/default.png">
+                    <%}%>
+                <h2><%= user.name%></h2>
+                <a href="/user/logout" id="logout">Logout</a>
+                </div>
+                
+        <%}%>
+        </ul>
+    </nav>
+</header>

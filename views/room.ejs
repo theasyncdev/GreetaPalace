@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greta Palace - Our Rooms</title>
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/room.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <%- include('./partials/nav.ejs') %>
+    <%- include('./partials/common.ejs') %>
+    
+    <!-- Hero Section -->
+  
+
+    <!-- Search Filter Section -->
+    <section class="search-section">
+        <div class="search-container">
+            <div class="search-header">
+                <h2><i class="fas fa-calendar-alt"></i> Check Availability</h2>
+                <p>Select your dates to find available rooms</p>
+            </div>
+            <div class="search-form">
+                <div class="form-group">
+                    <label for="checkInDate">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Check In Date
+                    </label>
+                    <input type="date" name="checkindate" id="checkInDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="checkOutDate">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Check Out Date
+                    </label>
+                    <input type="date" name="checkoutdate" id="checkOutDate" required>
+                </div>
+                <button class="search-btn" onclick="searchRooms()">
+                    <i class="fas fa-search"></i>
+                    Search Rooms
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rooms Section -->
+    <section class="rooms-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Available Rooms</h2>
+                <p>Choose from our carefully curated selection of rooms</p>
+            </div>
+
+            <% if (rooms && rooms.length > 0) { %>
+                <div class="rooms-grid">
+                    <% rooms.forEach((room, index) => { %>
+                        <div class="room-card" data-aos="fade-up" data-aos-delay="<%= index * 100 %>">
+                            <div class="room-image">
+                                <img src="/uploads/<%= room.roomImg %>" alt="<%= room.roomName %>">
+                                <div class="room-overlay">
+                                    <div class="room-status <%= room.totallRooms > 0 ? 'available' : 'unavailable' %>">
+                                        <i class="fas fa-<%= room.totallRooms > 0 ? 'check-circle' : 'times-circle' %>"></i>
+                                        <%= room.totallRooms > 0 ? 'Available' : 'Not Available' %>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="room-content">
+                                <div class="room-header">
+                                    <h3 class="room-name"><%= room.roomName %></h3>
+                                    <div class="room-price">
+                                        <span class="currency">Rs.</span>
+                                        <span class="amount"><%= room.price %></span>
+                                        <span class="period">/night</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="room-description">
+                                    <p><%= room.roomDesc %></p>
+                                </div>
+                                
+                                <div class="room-features">
+                                    <div class="feature">
+                                        <i class="fas fa-users"></i>
+                                        <span>Up to 4 guests</span>
+                                    </div>
+                                    <div class="feature">
+                                        <i class="fas fa-bed"></i>
+                                        <span><%= room.totallRooms %> rooms available</span>
+                                    </div>
+                                    <div class="feature">
+                                        <i class="fas fa-wifi"></i>
+                                        <span>Free WiFi</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="room-actions">
+                                    <% if (room.totallRooms > 0) { %>
+                                        <button class="book-btn" data-room-id="<%= room._id %>">
+                                            <i class="fas fa-calendar-check"></i>
+                                            Book Now
+                                        </button>
+                                    <% } else { %>
+                                        <button class="unavailable-btn" disabled>
+                                            <i class="fas fa-times"></i>
+                                            Not Available
+                                        </button>
+                                    <% } %>
+                                    <button class="details-btn" onclick="showRoomDetails('<%= room._id %>')">
+                                        <i class="fas fa-info-circle"></i>
+                                        View Details
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            <% } else { %>
+                <div class="no-rooms">
+                    <div class="no-rooms-content">
+                        <i class="fas fa-bed"></i>
+                        <h3>No Rooms Available</h3>
+                        <p>Sorry, there are no rooms available at the moment. Please try different dates or contact us for assistance.</p>
+                        <button class="contact-btn" onclick="contactUs()">
+                            <i class="fas fa-phone"></i>
+                            Contact Us
+                        </button>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </section>
+
+    <!-- Room Details Modal -->
+    <div id="roomModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Searching for rooms...</p>
+    </div>
+
+    <script>
+        // Date validation
+        function validateDates() {
+            const checkIn = document.getElementById('checkInDate').value;
+            const checkOut = document.getElementById('checkOutDate').value;
+            
+            if (!checkIn || !checkOut) {
+                showNotification('Please select both check-in and check-out dates.', 'error');
+                return false;
+            }
+            
+            const checkInDate = new Date(checkIn);
+            const checkOutDate = new Date(checkOut);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            
+            if (checkInDate < today) {
+                showNotification('Check-in date cannot be in the past.', 'error');
+                return false;
+            }
+            
+            if (checkOutDate <= checkInDate) {
+                showNotification('Check-out date must be after check-in date.', 'error');
+                return false;
+            }
+            
+            return true;
+        }
+
+        // Search rooms function
+        function searchRooms() {
+            if (!validateDates()) return;
+            
+            showLoading();
+            
+            const checkInDate = document.getElementById('checkInDate').value;
+            const checkOutDate = document.getElementById('checkOutDate').value;
+            
+            // Simulate search delay
+            setTimeout(() => {
+                hideLoading();
+                // For now, just scroll to rooms section
+                document.querySelector('.rooms-section').scrollIntoView({ 
+                    behavior: 'smooth' 
+                });
+            }, 1500);
+        }
+
+        // Book room function
+        document.querySelectorAll('.book-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                if (!validateDates()) return;
+                
+                const roomId = this.dataset.roomId;
+                const checkInDate = document.getElementById('checkInDate').value;
+                const checkOutDate = document.getElementById('checkOutDate').value;
+                
+                if (!checkInDate || !checkOutDate) {
+                    showNotification('Please select your check-in and check-out dates first.', 'error');
+                    return;
+                }
+                
+                const url = `/user/bookroom/${roomId}?checkInDate=${encodeURIComponent(checkInDate)}&checkOutDate=${encodeURIComponent(checkOutDate)}`;
+                window.location.href = url;
+            });
+        });
+
+        // Show room details modal
+        function showRoomDetails(roomId) {
+            // This would typically fetch room details from an API
+            const modal = document.getElementById('roomModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            modalContent.innerHTML = `
+                <div class="room-details">
+                    <h3>Room Details</h3>
+                    <p>Detailed information about this room will be displayed here.</p>
+                    <div class="amenities">
+                        <h4>Amenities</h4>
+                        <ul>
+                            <li><i class="fas fa-wifi"></i> Free WiFi</li>
+                            <li><i class="fas fa-tv"></i> Flat-screen TV</li>
+                            <li><i class="fas fa-snowflake"></i> Air Conditioning</li>
+                            <li><i class="fas fa-coffee"></i> Coffee Maker</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+            
+            modal.style.display = 'block';
+        }
+
+        // Close modal
+        document.querySelector('.close').addEventListener('click', function() {
+            document.getElementById('roomModal').style.display = 'none';
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('roomModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Loading functions
+        function showLoading() {
+            document.getElementById('loadingSpinner').style.display = 'flex';
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingSpinner').style.display = 'none';
+        }
+
+        // Notification function
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                <span>${message}</span>
+                <button onclick="this.parentElement.remove()">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 5000);
+        }
+
+        // Contact us function
+        function contactUs() {
+            showNotification('Contact feature coming soon!', 'info');
+        }
+
+        // Set minimum dates for date inputs
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('checkInDate').min = today;
+            document.getElementById('checkOutDate').min = today;
+            
+            // Update check-out minimum date when check-in changes
+            document.getElementById('checkInDate').addEventListener('change', function() {
+                document.getElementById('checkOutDate').min = this.value;
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+    <script src="/js/room.js"></script>
+    <%- include('./partials/commonscript.ejs') %>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!-- Modern JavaScript Libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://kit.fontawesome.com/01c92bbbb4.js" crossorigin="anonymous"></script>
+
+<!-- Custom Navigation JavaScript -->
+<script src="/js/navigation.js"></script>
+
+<!-- GSAP Animations -->
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// Smooth animations for page sections
+gsap.from('.page2', {
+    scrollTrigger: {
+        trigger: '.page2',
+        start: 'top 80%',
+        end: 'bottom 20%',
+        toggleActions: 'play none none reverse'
+    },
+    opacity: 0,
+    y: 50,
+    duration: 1,
+    ease: 'power2.out'
+});
+
+gsap.from('.page3', {
+    scrollTrigger: {
+        trigger: '.page3',
+        start: 'top 80%',
+        end: 'bottom 20%',
+        toggleActions: 'play none none reverse'
+    },
+    opacity: 0,
+    y: 50,
+    duration: 1,
+    ease: 'power2.out'
+});
+
+gsap.from('.page5', {
+    scrollTrigger: {
+        trigger: '.page5',
+        start: 'top 80%',
+        end: 'bottom 20%',
+        toggleActions: 'play none none reverse'
+    },
+    opacity: 0,
+    y: 50,
+    duration: 1,
+    ease: 'power2.out'
+});
+
+// Service cards animation
+gsap.from('.service', {
+    scrollTrigger: {
+        trigger: '.row',
+        start: 'top 80%',
+        end: 'bottom 20%',
+        toggleActions: 'play none none reverse'
+    },
+    opacity: 0,
+    y: 30,
+    duration: 0.8,
+    stagger: 0.2,
+    ease: 'power2.out'
+});
+
+// Image grid animations
+gsap.from('.image', {
+    scrollTrigger: {
+        trigger: '.about-image, .room-image',
+        start: 'top 80%',
+        end: 'bottom 20%',
+        toggleActions: 'play none none reverse'
+    },
+    opacity: 0,
+    scale: 0.8,
+    duration: 1,
+    stagger: 0.1,
+    ease: 'power2.out'
+});
+
+// Preloader animation
+window.addEventListener('load', function() {
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        gsap.to(preloader, {
+            opacity: 0,
+            duration: 0.5,
+            onComplete: function() {
+                preloader.style.display = 'none';
+            }
+        });
+    }
+});
+
+// Enhanced mobile menu animation
+const hamburger = document.querySelector('.hamburger');
+const navBar = document.querySelector('.nav-bar');
+
+if (hamburger && navBar) {
+    hamburger.addEventListener('click', function() {
+        const isActive = navBar.classList.contains('active');
+        
+        if (!isActive) {
+            // Opening animation
+            gsap.to(navBar, {
+                height: '100vh',
+                duration: 0.3,
+                ease: 'power2.out'
+            });
+            
+            gsap.from('.nav-bar ul li', {
+                opacity: 0,
+                y: -20,
+                duration: 0.3,
+                stagger: 0.1,
+                ease: 'power2.out',
+                delay: 0.1
+            });
+        } else {
+            // Closing animation
+            gsap.to(navBar, {
+                height: 0,
+                duration: 0.3,
+                ease: 'power2.in'
+            });
+        }
+    });
+}
+</script>

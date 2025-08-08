@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greta Palace - Luxury Hotel in Kathmandu</title>
+    <meta name="description" content="A Palladian manor, in the heart of Kathmandu, Greta Palace is a luxury hideaway, meticulously restored and exquisitely reimagined.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <%- include('./partials/commoncss.ejs') %>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader"></div>
+    
+    <!-- Navigation -->
+    <%- include('./partials/common.ejs') %>
+    <%- include('./partials/nav.ejs') %>
+    
+    <!-- Hero Section -->
+    <div class="page2">
+        <div class="about-text">
+            <h1>Greta Palace</h1>
+            <p>A Palladian manor, in the heart of Kathmandu, Greta Palace is a luxury hideaway, meticulously restored and exquisitely reimagined. Spectacularly located by the Rock of Greta in picturesque Co. Tipperary, the hotel is enveloped in nature and overlooked by ancient history.</p>
+            <a href="/about" class="btn">ABOUT THE HOTEL</a>
+        </div>
+        <div class="about-image">
+            <div class="image" id="img1" style="background-image: url(/images/about-1.jpg);"></div>
+            <div class="image" id="img2" style="background-image: url(/images/about-2.jpg);"></div>
+            <div class="image" id="img3" style="background-image: url(/images/about-3.jpg);"></div>
+            <div class="image" id="img4" style="background-image: url(/images/about-4.jpg);"></div>
+        </div>
+    </div>
+    
+    <!-- Rooms Section -->
+    <div class="page3">
+        <div class="room-text">
+            <h1>STAY WITH US</h1>
+            <p>Blissfully decadent and supremely stylish, Greta Palace offers various luxury bedrooms and suites each of which has been individually and luxuriously designed for rest and relaxation.</p>
+            <a href="/room" class="btn">VIEW ROOMS</a>
+        </div>
+        <div class="room-image">
+            <div class="image" id="room1" style="background-image: url(/images/room-1.jpg);"></div>
+            <div class="image" id="room2" style="background-image: url(/images/room-2.jpg);"></div>
+            <div class="image" id="room3" style="background-image: url(/images/room-3.jpg);"></div>
+            <div class="image" id="room4" style="background-image: url(/images/room-4.jpg);"></div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <div class="page5">
+        <h1>Our Services</h1>
+        <div class="row">
+            <div class="service">
+                <i class="fa-solid fa-spa"></i>
+                <h2>Spa & Wellness</h2>
+                <p>Indulge in our world-class spa treatments and wellness programs designed to rejuvenate your mind, body, and soul.</p>
+            </div>
+            <div class="service">
+                <i class="fa-solid fa-champagne-glasses"></i>
+                <h2>Greta Bar</h2>
+                <p>Experience the finest selection of wines, spirits, and craft cocktails in our elegant bar with stunning views.</p>
+            </div>
+            <div class="service">
+                <i class="fa-solid fa-utensils"></i>
+                <h2>Fine Dining</h2>
+                <p>Savor exquisite cuisine prepared by our award-winning chefs using the finest local and international ingredients.</p>
+            </div>
+            <div class="service">
+                <i class="fa-solid fa-dumbbell"></i>
+                <h2>Fitness Center</h2>
+                <p>Stay active with our state-of-the-art fitness facilities and personalized training programs.</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <%- include('./partials/commonscript.ejs') %>
+    <%- include('./partials/footer.ejs') %>
+</body>
+</html>

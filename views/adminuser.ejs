@@ -1,0 +1,56 @@
+<%- include('./partials/adminhead') %>
+<main>
+  <div class="usertable">
+    <!-- Search Form -->
+    <form class="search-form" method="get" action="/admin/users">
+      <input type="text" name="search" value="<%= search %>" placeholder="Search..." class="search-input">
+      <button type="submit" class="search-button">Search</button>
+    </form>
+
+    <table>
+        <caption>All Users</caption>
+        <thead>
+          <tr>
+            <th scope="col">S.N</th>
+            <th scope="col">User Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Created At</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (allusers && allusers.length > 0) { %>
+            <% allusers.forEach((user, index) => { %>
+              <tr>
+                <td data-label="S.N"><%= index + 1 + (page - 1) * pageSize %></td>
+                <td data-label="User Name"><%= user.name %></td>
+                <td data-label="Email"><%= user.email %></td>
+                <td data-label="Phone"><%= user.phone %></td>
+                <td data-label="Created At"><%= user.createdAt.toDateString() %></td>
+                <td data-label="Action"> 
+                  <a href="/admin/userinfo/<%=user._id%>"><span class="material-icons-outlined text-blue">open_in_new</span></a>
+                </td>
+              </tr>
+            <% }) %>
+          <% } else { %>
+            <tr>
+              <td colspan="6">No users found.</td>
+            </tr>
+          <% } %>
+        </tbody>
+    </table>
+
+    <!-- Pagination Controls -->
+    <div class="pagination">
+        <% if (page > 1) { %>
+            <a href="?page=<%= page - 1 %>&search=<%= search %>">Previous</a>
+        <% } %>
+        <span>Page <%= page %> of <%= Math.ceil(totalUsers / pageSize) %></span>
+        <% if (page < Math.ceil(totalUsers / pageSize)) { %>
+            <a href="?page=<%= page + 1 %>&search=<%= search %>">Next</a>
+        <% } %>
+    </div>
+  </div>
+</main>
+<%- include('./partials/adminfoot') %>
